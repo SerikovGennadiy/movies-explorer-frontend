@@ -1,8 +1,12 @@
 import './App.css';
+import Site from '../Site/Site';
+import { LoginProvider } from '../../contexts/LoginContext';
 
 function App() {
   return (
-    <div>Приложуха</div>
+    <LoginProvider>
+      <Site/>
+    </LoginProvider>
   );
 }
 

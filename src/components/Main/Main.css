@@ -1,0 +1,9 @@
+.main {
+  color: #fff;
+}
+
+.main__promo {
+  display: grid;
+  justify-items: center;
+
+}
