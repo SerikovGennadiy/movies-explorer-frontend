@@ -8,6 +8,7 @@ import Profile from '../Profile/Profile';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Footer from '../Footer/Footer';
+import Modal from '../Modal/Modal';
 
 import ErrorPage from '../ErrorPage/ErrorPage';
 
@@ -39,6 +40,7 @@ const Site = () => {
               <ErrorPage/>
             </Route>
         </Switch>
+        <Modal/>
       </div>
     )
 }

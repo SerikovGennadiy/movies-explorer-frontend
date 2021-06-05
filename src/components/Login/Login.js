@@ -3,13 +3,18 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 import Input from '../Input/Input';
 import Logo from '../Logo/Logo';
+import { useModal } from '../../contexts/ModalContext';
 
 const Login = () => {
   //const { account, loggedIn, setLoggedIn } = useAccount();
+  const { setModal } = useModal();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
+    setModal({
+      isOpen: true,
+      message: 'Успешно сохранено'
+    })
   }
 
   return (

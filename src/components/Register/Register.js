@@ -3,10 +3,11 @@ import { useAccount } from '../../contexts/AccountContext';
 import { Link } from 'react-router-dom';
 import Input from '../Input/Input';
 import Logo from '../Logo/Logo';
+import { useModal } from '../../contexts/ModalContext';
 
 const Register = () => {
   const { account, loggedIn } = useAccount();
-
+  const { setModal } = useModal();
   //const location = useLocation();
   //const { isEdit } = location.state;
 
@@ -15,7 +16,10 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
+    setModal({
+      isOpen: true,
+      message: 'Успешно сохранено'
+    })
   }
 
   return (
