@@ -2,9 +2,15 @@
   margin: 0 auto;
   min-width: 320px;
   max-width: 1280px;
-  border: 1px solid black;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  background-color: #fff;
 }
 
-.page__main {
-  background-color: #5C5C5C;
+@media screen and (max-width: 1279px) {
+  .page {
+    align-items: flex-start;
+    min-height: 100vh;
+  }
 }

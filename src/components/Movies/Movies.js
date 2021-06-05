@@ -1,14 +1,18 @@
-import './Movies.css';
+import Header from '../Header/Header';
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Footer from '../Footer/Footer';
+import { useMovies } from '../../contexts/MovieContext';
 
 const Movies = () => {
+    const { movies } = useMovies();
     return (
-        <ul>
-            <li>{'ФИЛЬМ'}</li>
-            <li>{'ФИЛЬМ'}</li>
-            <li>{'ФИЛЬМ'}</li>
-            <li>{'ФИЛЬМ'}</li>
-            <li>{'ФИЛЬМ'}</li>
-        </ul>
+       <>
+        <Header/>
+        <SearchForm/>
+        <MoviesCardList movies={movies}/>
+        <Footer />
+       </>
     )
 }
 

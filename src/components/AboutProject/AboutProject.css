@@ -117,3 +117,9 @@
 
   color: #A0A0A0;
 }
+
+@media screen and (max-width: 1279px) {
+  .about-project__content {
+    width: calc(100% - 30px * 2);
+  }
+}

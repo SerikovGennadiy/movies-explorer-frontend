@@ -1,0 +1,112 @@
+.profile {
+  display: grid;
+}
+
+.profile__greetings {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Inter', 'Arial', sans-serif;;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+
+  text-align: center;
+
+  color: #000000;
+
+  padding: 74px 0 120px;
+}
+
+.profile__credentials {
+  display: grid;
+  row-gap: 15px;
+}
+
+.profile__credential {
+  display: flex;
+  justify-content: space-between;
+  min-width: 410px;
+
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.profile__credential-title {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 13px;
+
+  color: #000000;
+}
+
+.profile__credential-value {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 13px;
+
+  color: #000000;
+
+  justify-self: end;
+}
+
+.profile__buttons {
+  display: grid;
+  row-gap: 16px;
+
+
+  justify-items: center;
+  padding: 220px 0 70px
+}
+
+.profile__button {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+  text-decoration: none;
+
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.profile__button:hover {
+  opacity: .7;
+}
+
+.profile__button_to_logout {
+  font-weight: bold;
+  color: red;
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    min-height: 100vh;
+    align-content: start;
+  }
+  .profile__credential {
+    min-width: 280px;
+  }
+  .profile__greetings {
+    padding: 50px 0 80px;
+  }
+}

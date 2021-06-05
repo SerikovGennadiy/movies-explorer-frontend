@@ -1,0 +1,65 @@
+.field {
+  position: relative;
+  display: grid;
+  row-gap: 10px;
+
+  width: 280px;
+}
+
+.field__label {
+  font-family: 'Inter','Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+
+  color: #A0A0A0;
+}
+
+.field__input {
+  outline:none;
+  border: none;
+  padding: 15px;
+
+  font-family: 'Inter','Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+
+  color: #000000;
+
+  background: #F9F9F9;
+  border-radius: 8px;
+}
+
+.field__input_error_active {
+  color: red;
+}
+
+.field__input::placeholder {
+  color: #cacaca;
+}
+
+.field__error {
+  position: absolute;
+  left: 0px;
+  bottom: -14px;
+  font-family: 'Inter','Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #EE3465;
+  display: none;
+}
+
+.field__error_active {
+  display: inline;
+}
+
+@media screen and (max-width: 767px) {
+  .field {
+    width: 100%;
+  }
+}

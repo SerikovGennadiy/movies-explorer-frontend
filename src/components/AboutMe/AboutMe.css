@@ -99,3 +99,9 @@
 
   text-decoration: none;
 }
+
+@media screen and (max-width: 1279px) {
+  .about-me__content {
+    width: calc(100% - 30px * 2);
+  }
+}

@@ -1,12 +1,16 @@
 import './App.css';
 import Site from '../Site/Site';
-import { LoginProvider } from '../../contexts/LoginContext';
+
+import { AccountProvider } from '../../contexts/AccountContext';
+import { MovieProvider } from '../../contexts/MovieContext';
 
 function App() {
   return (
-    <LoginProvider>
-      <Site/>
-    </LoginProvider>
+      <AccountProvider>
+        <MovieProvider>
+          <Site/>
+        </MovieProvider>
+      </AccountProvider>
   );
 }
 
