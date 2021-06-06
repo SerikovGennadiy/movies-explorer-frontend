@@ -214,6 +214,12 @@
   .nav__link_to_logout {
     display: none;
   }
+  .nav__link_to_movies {
+    display: none;
+  }
+  .nav__link_to_saved-movies {
+    display: none;
+  }
   .nav__burger-opener {
     display: inline;
     transform: scaleX(1.3);
