@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/SerikovGennadiy/movies-explorer-frontend/static/css/main.45da4935.chunk.css",
+    "main.js": "/SerikovGennadiy/movies-explorer-frontend/static/js/main.267a5ee3.chunk.js",
+    "main.js.map": "/SerikovGennadiy/movies-explorer-frontend/static/js/main.267a5ee3.chunk.js.map",
+    "runtime-main.js": "/SerikovGennadiy/movies-explorer-frontend/static/js/runtime-main.1f0fe770.js",
+    "runtime-main.js.map": "/SerikovGennadiy/movies-explorer-frontend/static/js/runtime-main.1f0fe770.js.map",
+    "static/js/2.49d4da2c.chunk.js": "/SerikovGennadiy/movies-explorer-frontend/static/js/2.49d4da2c.chunk.js",
+    "static/js/2.49d4da2c.chunk.js.map": "/SerikovGennadiy/movies-explorer-frontend/static/js/2.49d4da2c.chunk.js.map",
+    "static/js/3.45e5c4ce.chunk.js": "/SerikovGennadiy/movies-explorer-frontend/static/js/3.45e5c4ce.chunk.js",
+    "static/js/3.45e5c4ce.chunk.js.map": "/SerikovGennadiy/movies-explorer-frontend/static/js/3.45e5c4ce.chunk.js.map",
+    "index.html": "/SerikovGennadiy/movies-explorer-frontend/index.html",
+    "static/css/main.45da4935.chunk.css.map": "/SerikovGennadiy/movies-explorer-frontend/static/css/main.45da4935.chunk.css.map",
+    "static/js/2.49d4da2c.chunk.js.LICENSE.txt": "/SerikovGennadiy/movies-explorer-frontend/static/js/2.49d4da2c.chunk.js.LICENSE.txt",
+    "static/media/arrow.239c8948.svg": "/SerikovGennadiy/movies-explorer-frontend/static/media/arrow.239c8948.svg",
+    "static/media/Modal.css": "/SerikovGennadiy/movies-explorer-frontend/static/media/cross-arrow.5d5f6643.svg",
+    "static/media/logo.7e70bfb1.svg": "/SerikovGennadiy/movies-explorer-frontend/static/media/logo.7e70bfb1.svg",
+    "static/media/man.dbbadc2d.jpg": "/SerikovGennadiy/movies-explorer-frontend/static/media/man.dbbadc2d.jpg",
+    "static/media/Navigation.css": "/SerikovGennadiy/movies-explorer-frontend/static/media/menu-burger.d6df1430.svg",
+    "static/media/web-earth.5d962253.png": "/SerikovGennadiy/movies-explorer-frontend/static/media/web-earth.5d962253.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1f0fe770.js",
+    "static/js/2.49d4da2c.chunk.js",
+    "static/css/main.45da4935.chunk.css",
+    "static/js/main.267a5ee3.chunk.js"
+  ]
+}
