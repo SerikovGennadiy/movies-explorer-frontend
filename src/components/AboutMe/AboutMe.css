@@ -105,3 +105,12 @@
     width: calc(100% - 30px * 2);
   }
 }
+
+@media screen and (max-width: 767px) {
+  .about-me__content {
+    width: calc(100% - 30px * 2);
+  }
+  .about-me__profile {
+    grid-template-columns: none;
+  }
+}

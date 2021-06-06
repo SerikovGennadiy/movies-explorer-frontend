@@ -10,7 +10,7 @@
 }
 
 .promo__title {
-  width: 640px;
+  max-width: 640px;
   margin: 0;
   padding: 0;
 
@@ -62,5 +62,18 @@
   .promo__subtitle {
     justify-self: center;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .promo__title {
+    font-size: 30px;
+    line-height: 38px;
+    text-align: center;
+    letter-spacing: -0.04em;
+  }
+  .promo__image {
+    width: 210px;
+    height: 206px;
   }
 }

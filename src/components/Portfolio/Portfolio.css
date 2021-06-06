@@ -62,3 +62,14 @@
 
   object-fit: cover;
 }
+
+@media screen and (max-width: 767px) {
+  .portfolio {
+    width: calc(100% - 15px * 2);
+  }
+  .portfolio__work-title {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.04em;
+  }
+}

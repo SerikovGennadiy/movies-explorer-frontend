@@ -36,10 +36,11 @@
   margin: 0;
   padding: 0;
   margin-top: 70px;
-
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 26px 40px;
+  grid-template-columns: column;
+  grid-auto-flow: column;
+  grid-gap: 26px 40px;
+  grid-template-rows: repeat(2,1fr);
 }
 
 .about-project__brief {
@@ -121,5 +122,14 @@
 @media screen and (max-width: 1279px) {
   .about-project__content {
     width: calc(100% - 30px * 2);
+  }
+}
+@media screen and (max-width: 767px) {
+  .about-project__content {
+    width: calc(100% - 18px * 2);
+  }
+  .about-project__description {
+    grid-auto-flow: row;
+    grid-template-rows: none;
   }
 }

@@ -22,7 +22,7 @@
 }
 
 .nav__link {
-  color: #fff;
+  color: #000;
 
   font-family: 'Inter','Arial', sans-serif;
   font-style: normal;
@@ -81,7 +81,7 @@
 
 .nav__burger {
   position: absolute;
-  z-index: 1;
+  z-index: 11;
 }
 
 .nav__burger-menu {
@@ -121,8 +121,8 @@
   background-image: url('../../images/menu-burger.svg');
   background-repeat: no-repeat;
   background-position: center;
-  width: 25px;
-  height: 25px;
+  width: 44px;
+  height: 44px;
   cursor: pointer;
 
   display: none;
