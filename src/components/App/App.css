@@ -1,0 +1,16 @@
+.page {
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: 1280px;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  background-color: #fff;
+}
+
+@media screen and (max-width: 1279px) {
+  .page {
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+}

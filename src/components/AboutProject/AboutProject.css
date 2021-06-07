@@ -1,0 +1,135 @@
+.about-project {
+  padding: 110px 0;
+  background-color: #fff;
+  display: grid;
+  justify-items: center;
+}
+
+.about-project__content {
+  width: calc(100% - 70px * 2);
+}
+
+.about-project__title {
+  margin: 0;
+  padding-bottom: 0;
+  font-family: 'Inter','Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 27px;
+
+  letter-spacing: -0.04em;
+
+  color: #000000;
+}
+
+.about-project__title::after {
+  content:'';
+  display: block;
+  background-color: #000;
+  height: 1px;
+  width: 100%;
+  margin-top: 23px;
+}
+
+.about-project__description {
+  margin: 0;
+  padding: 0;
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: column;
+  grid-auto-flow: column;
+  grid-gap: 26px 40px;
+  grid-template-rows: repeat(2,1fr);
+}
+
+.about-project__brief {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Inter','Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+
+  color: #000;
+}
+
+.about-project__text {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Inter','Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #000;
+}
+
+.about-project__gant {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  row-gap: 14px;
+  margin: 100px auto;
+}
+
+.about-project__sprint-backend {
+  background-color: #2BE080;
+  padding: 8px 14px;
+  text-align: center;
+
+  font-family: 'Inter','Arial', sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.about-project__sprint-frontend {
+  background-color: #f2f2f2;
+  padding: 8px 14px;
+  text-align: center;
+
+  font-family: 'Inter','Arial', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+
+  color: #000000;
+}
+
+.about-project__subtitle {
+  margin: 0;
+  padding: 0;
+  justify-self: center;
+
+  font-family: 'Inter','Arial', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+
+  color: #A0A0A0;
+}
+
+@media screen and (max-width: 1279px) {
+  .about-project__content {
+    width: calc(100% - 30px * 2);
+  }
+}
+@media screen and (max-width: 767px) {
+  .about-project__content {
+    width: calc(100% - 18px * 2);
+  }
+  .about-project__description {
+    grid-auto-flow: row;
+    grid-template-rows: none;
+  }
+}

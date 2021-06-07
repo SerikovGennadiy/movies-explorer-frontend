@@ -1,0 +1,17 @@
+.lead {
+  background-color: #5c5c5c;
+  width: 100%;
+}
+
+.lead__header {
+  margin: 0 auto;
+}
+
+.lead__promo {
+  margin: 0 auto;
+}
+
+.lead__nav-tab {
+  margin: 0 auto;
+  padding-bottom: 75px;
+}
