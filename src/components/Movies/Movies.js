@@ -10,7 +10,7 @@ const Movies = () => {
        <>
         <Header/>
         <SearchForm/>
-        <MoviesCardList movies={movies}/>
+        <MoviesCardList movieList={movies}/>
         <Footer />
        </>
     )

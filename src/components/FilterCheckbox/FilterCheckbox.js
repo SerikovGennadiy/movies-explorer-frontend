@@ -1,21 +1,28 @@
 import '../FilterCheckbox/FilterCheckbox.css';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const FilterCheckbox = (props) => {
-  const { mix = '' } = props;
+  const { mix = '', formProps } = props;
+  const { register, setValue } = formProps;
 
   const check = useRef();
   const [checked, setChecked] = useState(false);
 
-  const onChange = () => {
+  const onChange = (e) => {
     setChecked(check.current.checked);
+    setValue("short_film_only", checked)
   }
+
+  useEffect(() => {
+    setValue("short_film_only", checked)
+  })
 
   return (
     <div className={`field-checkbox ${mix}`}>
       <input
+        {...register("short_film_only")}
         className="field-checkbox__input"
-        name="search-box__short-movies-only"
+        name="short_film_only"
         ref={check}
         type="checkbox"
         id="short-movie-check"

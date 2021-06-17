@@ -7,36 +7,49 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
 const MoviesCardList = (props) => {
-  const { movies } = props;
-  const { isSaved = false } = props;
+  const { movieList } = props;
+  const { isSavedList = false } = props;
 
   const { preloader, setPreloader } = useMovies();
+
   const [buffer, setBuffer] = useState([]);
+  const [note, setNote] = useState('');
+
   const ranger = useSkipTake();
 
   useEffect(() => {
-    setPreloader(true);
-    setTimeout(() => {
-      setBuffer([...movies.slice(0, ranger.partQuantity)]);
-      setPreloader(false);
-    }, 2000);
+    setNote('');
   },[])
+
+  useEffect(() => {
+    setNote('');
+    if(movieList.length > 0) {
+      //setPreloader(true);
+        //setTimeout(() => {
+        setBuffer([...movieList.slice(0, ranger.partQuantity)]);
+        //setPreloader(false);
+      //}, 2000);
+    }
+    else {
+      setNote('Ничего не найдено');
+    }
+  },[movieList])
 
   const upLoad = () => {
     setPreloader(true);
     setTimeout(() => {
-      setBuffer([...buffer, ...movies.slice(buffer.length, buffer.length + ranger.uploadQuantity)])
+      setBuffer([...buffer, ...movieList.slice(buffer.length, buffer.length + ranger.uploadQuantity)])
       setPreloader(false);
     }, 2000);
   }
 
-  const remain = movies.length - buffer.length;
+  const remain = movieList.length - buffer.length;
 
   return (
     <div className="movie-cards">
       <section className="movie-cards__list">
-        { !preloader && buffer.length === 0 && <p className="movie-cards__empty-result">Ничего не найдено</p>}
-        { buffer.map((movieCard, index) => <MoviesCard key={index} movieCard={movieCard} isSaved={isSaved}/>) }
+        { !preloader && buffer.length === 0 && <p className="movie-cards__empty-result">{note}</p>}
+        { buffer.map((movieCard, index) => <MoviesCard key={index} movieCard={movieCard} isSavedList={isSavedList}/>) }
         { remain > 0 && <button className="movie-cards__button-upload" onClick={upLoad} type="button">Еще</button> }
       </section>
       { preloader && <Preloader /> }

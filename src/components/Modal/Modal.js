@@ -1,18 +1,18 @@
 import './Modal.css';
 
 import { useModal } from '../../contexts/ModalContext';
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 
 const Modal = () => {
   const { modalWindow, resetModal } = useModal();
 
   const closeModal = () => resetModal();
 
-  useEffect(() => {
-    setTimeout(()=>{
-      resetModal();
-    }, 6000);
-  }, [modalWindow.isOpen])
+  // useEffect(() => {
+  //   setTimeout(()=>{
+  //     resetModal();
+  //   ..}, 6000);
+  // }, [modalWindow.isOpen])
 
   return (
     <div className={`modal ${modalWindow.isOpen ? 'modal_active':''}`}>

@@ -46,3 +46,29 @@ export const useSkipTake = (arr) => {
 
     return { partQuantity, uploadQuantity };
 }
+
+export const formatTime = (_minutes) => {
+  const hours = parseInt(_minutes / 60, 10) || 0;
+  const minutes = parseInt(_minutes % 60, 10) || 0;
+  return `${hours > 0 ? hours+'ч':''} ${minutes}м`;
+}
+
+export const formatTimeMilli = (_milliseconds) => {
+  const minutes = _milliseconds / 1000 / 60;
+  return formatTime(minutes);
+}
+
+export const filterMovies = (movies, title, isShort) => {
+  return movies.filter(movie => {
+    const _title = title.toLowerCase();
+
+    const nameEn = movie["nameEN"] !== null ? movie["nameEN"].toLowerCase().includes(_title) : false;
+    const nameRu = movie["nameRU"] !== null ? movie["nameRU"].toLowerCase().includes(_title) : false;
+
+    let isFinded = nameEn || nameRu;
+    if(isShort) {
+      isFinded = isFinded && movie.duration < 40;
+    }
+    return isFinded;
+  })
+}

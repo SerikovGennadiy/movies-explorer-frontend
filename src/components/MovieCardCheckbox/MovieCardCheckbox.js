@@ -7,7 +7,7 @@ const MovieCardCheckbox = ({checked, id, onCheckChange}) => {
 
   useEffect(() => {
     check.current.checked = checked;
-  }, []);
+  }, [checked]);
 
   const onChange = (e) => {
     onCheckChange(e);

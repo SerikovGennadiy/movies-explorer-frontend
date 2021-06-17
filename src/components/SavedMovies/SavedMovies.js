@@ -7,11 +7,12 @@ import { useMovies } from '../../contexts/MovieContext';
 
 const SavedMovies = () => {
   const { savedMovies } = useMovies();
+
   return (
      <>
       <Header/>
       <SearchForm/>
-      <MoviesCardList movies={savedMovies} isSaved={true}/>
+      <MoviesCardList movieList={savedMovies} isSavedList={true}/>
       <Footer />
      </>
   )

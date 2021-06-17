@@ -1,23 +1,17 @@
 import './Input.css';
-import { useForm } from 'react-hook-form';
-import {  useRef } from 'react';
+import { useRef } from 'react';
 
 const Input = (props) => {
-  const input = useRef();
-  const { id, label, type = 'text', placeholder, name, value = '', pattern } = props;
 
-  const {
-    register,
-    formState: { errors }
-  } = useForm({
-    mode: 'onBlur'
-  })
+  const input = useRef();
+  const { id, label, type = 'text', placeholder, name, value = '', pattern, formProps } = props;
+  const { register, errors, setValue} = formProps;
 
   return (
     <div className="field">
       <label className="field__label" htmlFor={id}>{label}</label>
       <input
-        {...register(name, pattern)}
+        { ...register(name, pattern) }
         className={ `field__input ${ errors?.[name] && 'field__input_error_active' }`}
         type={type}
         placeholder={placeholder}
@@ -25,6 +19,7 @@ const Input = (props) => {
         ref={input}
         defaultValue={value}
         autoComplete="off"
+        onChange={()=>{ setValue(name, input.current.value)}}
       />
       <span className={ `field__error ${ errors?.[name] && 'field__error_active' }`}>
         { errors?.[name]?.type === 'required' && 'Поле обязательно для заполнения' }

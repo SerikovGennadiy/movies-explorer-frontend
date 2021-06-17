@@ -1,4 +1,4 @@
-import { Switch, Route} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Lead from '../Lead/Lead';
 import Main from '../Main/Main';
@@ -11,6 +11,8 @@ import Footer from '../Footer/Footer';
 import Modal from '../Modal/Modal';
 
 import ErrorPage from '../ErrorPage/ErrorPage';
+
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 const Site = () => {
     return (
@@ -27,15 +29,9 @@ const Site = () => {
             <Route path="/signup">
               <Register/>
             </Route>
-            <Route path="/profile">
-              <Profile/>
-            </Route>
-            <Route path="/movies">
-              <Movies/>
-            </Route>
-            <Route path="/saved-movies">
-              <SavedMovies/>
-            </Route>
+            <ProtectedRoute path="/profile" component={Profile} />
+            <ProtectedRoute path="/movies" component={Movies} />
+            <ProtectedRoute path="/saved-movies" component={SavedMovies} />
             <Route path="*">
               <ErrorPage/>
             </Route>
