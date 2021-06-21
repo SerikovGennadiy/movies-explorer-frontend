@@ -19,6 +19,7 @@ const Profile = () => {
       .then(({ isLogOut, message }) => {
         if(isLogOut) {
           setLoggedIn(false);
+          localStorage.clear();
           history.push('/signin')
         }
         else {

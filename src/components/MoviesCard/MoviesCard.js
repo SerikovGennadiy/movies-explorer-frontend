@@ -43,7 +43,7 @@ const MoviesCard = ({ movieCard, isSavedList }) => {
         }
         else {
           const arr = savedMovies.filter(movie => movie.movieId !== movieId);
-          saveLastSavedMovies(arr);
+          saveLastSavedMovies([...arr]);
           setSavedMovies([...arr]);
           setChecked(false);
           setModal({

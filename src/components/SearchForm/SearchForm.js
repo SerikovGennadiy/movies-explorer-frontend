@@ -6,7 +6,7 @@ import { useModal } from '../../contexts/ModalContext';
 
 import movieApi from '../../utils/MoviesApi';
 
-import { filterMovies, filterShortMovies, getLastMovies, getLastSavedMovies, saveLastMovies, saveLastSavedMovies } from '../../utils/utils';
+import { filterMovies, filterShortMovies, getLastMovies, getLastSavedMovies, saveLastMovies } from '../../utils/utils';
 
 import FieldCheckbox from '../FilterCheckbox/FilterCheckbox';
 
