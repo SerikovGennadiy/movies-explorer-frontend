@@ -12,6 +12,7 @@ import mainApi from '../../utils/MainApi';
 
 const Register = () => {
   const [ valid, setValid ] = useState(false);
+  const [ inputBlocked, setInputBlocked ] = useState(false);
   const { account, setAccount, loggedIn, setLoggedIn } = useAccount();
   const { setModal } = useModal();
   const history = useHistory();
@@ -118,7 +119,7 @@ const Register = () => {
       <Logo/>
       <p className="register__greetings">{greetings}</p>
       <Input
-        formProps={{ register, errors, setValue }}
+        formProps={{ register, errors, setValue, blocked : inputBlocked }}
         id={"name"}
         label={"Имя"}
         placeholder={"Введите имя пользователя"}
@@ -130,7 +131,7 @@ const Register = () => {
           maxLength: 30
       }} />
       <Input
-        formProps={{ register, errors, setValue }}
+        formProps={{ register, errors, setValue, blocked : inputBlocked }}
         id={"email"}
         label={"E-mail"}
         placeholder={"Укажите email"}
@@ -142,7 +143,7 @@ const Register = () => {
       }} />
       { !loggedIn &&
           <Input
-            formProps={{ register, errors, setValue }}
+            formProps={{ register, errors, setValue, blocked : inputBlocked }}
             id={"password"}
             type={"password"}
             label={"Пароль"}

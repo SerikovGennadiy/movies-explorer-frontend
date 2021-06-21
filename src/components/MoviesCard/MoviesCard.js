@@ -5,7 +5,7 @@ import MovieCardCheckbox from '../MovieCardCheckbox/MovieCardCheckbox';
 import { useEffect, useState } from 'react';
 import { useMovies } from '../../contexts/MovieContext';
 import { useModal } from '../../contexts/ModalContext';
-import { formatTime, formatTimeMilli } from '../../utils/utils';
+import { formatTime, formatTimeMilli, saveLastSavedMovies } from '../../utils/utils';
 import { useHistory } from 'react-router-dom';
 
 import mainApi from '../../utils/MainApi';
@@ -43,6 +43,7 @@ const MoviesCard = ({ movieCard, isSavedList }) => {
         }
         else {
           const arr = savedMovies.filter(movie => movie.movieId !== movieId);
+          saveLastSavedMovies(arr);
           setSavedMovies([...arr]);
           setChecked(false);
           setModal({
@@ -100,7 +101,7 @@ const MoviesCard = ({ movieCard, isSavedList }) => {
           setModal({
             message: 'Фильм добавлен в коллекцию'
           })
-          setSavedMovies([...savedMovies, {
+          const _savedMovies = [...savedMovies, {
             country,
             director,
             duration: movieCard.duration * 60 * 1000,
@@ -111,7 +112,10 @@ const MoviesCard = ({ movieCard, isSavedList }) => {
             nameRU,
             nameEN,
             movieId: movieCard.id,
-          }])
+          }];
+
+          setSavedMovies(_savedMovies)
+          saveLastSavedMovies(_savedMovies);
           setChecked(true);
         }
         setPreloader(false);

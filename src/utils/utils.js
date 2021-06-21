@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { VIEWPORT_WIDE, VIEWPORT_MIDDLE, VIEWPORT_THIN } from '../constants/constants';
+import { SHORT_FILM_DURATION  } from "../constants/constants";
 
 export const getViewportSizes = () => {
   const { innerWidth: width, innerHeight: height } = window;
@@ -19,7 +20,7 @@ export const useViewportSizes = () => {
     }
   }, []);
 
-  return dimensions;
+  return dimensions; // { width, height, ..... }
 }
 
 export const useSkipTake = (arr) => {
@@ -58,17 +59,35 @@ export const formatTimeMilli = (_milliseconds) => {
   return formatTime(minutes);
 }
 
-export const filterMovies = (movies, title, isShort) => {
+export const filterMovies = (movies, title) => {
   return movies.filter(movie => {
     const _title = title.toLowerCase();
-
     const nameEn = movie["nameEN"] !== null ? movie["nameEN"].toLowerCase().includes(_title) : false;
     const nameRu = movie["nameRU"] !== null ? movie["nameRU"].toLowerCase().includes(_title) : false;
-
-    let isFinded = nameEn || nameRu;
-    if(isShort) {
-      isFinded = isFinded && movie.duration < 40;
-    }
-    return isFinded;
-  })
+    return nameEn || nameRu;
+  });
 }
+
+export const filterShortMovies = (movies) => {
+  return movies.filter(movie => movie.duration < SHORT_FILM_DURATION);
+}
+
+export const getLastMovies = () => {
+  let _movies = [];
+  if(localStorage.getItem('lastQueryMovies')) {
+    const { movies } = JSON.parse(localStorage.getItem('lastQueryMovies'));
+    _movies = movies;
+  }
+  return _movies;
+}
+export const getLastSavedMovies = () => {
+  let _movies = [];
+  if(localStorage.getItem('lastQuerySavedMovies')) {
+    const { movies } = JSON.parse(localStorage.getItem('lastQuerySavedMovies'));
+    _movies = movies;
+  }
+  return _movies;
+}
+
+export const saveLastMovies = (movies) => localStorage.setItem('lastQueryMovies', JSON.stringify({ movies })); //lastQuerySavedMovies
+export const saveLastSavedMovies = (movies) => localStorage.setItem('lastQuerySavedMovies', JSON.stringify({ movies })); //lastQuerySavedMovies

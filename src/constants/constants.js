@@ -9,3 +9,5 @@ export const apiConfig = {
     'Content-Type' : 'application/json'
   }
 }
+
+export const SHORT_FILM_DURATION = 40;

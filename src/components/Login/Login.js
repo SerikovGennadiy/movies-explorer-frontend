@@ -12,6 +12,7 @@ import mainApi from '../../utils/MainApi';
 
 const Login = () => {
   const [ valid, setValid ] = useState(false);
+  const [ inputBlocked, setInputBlocked ] = useState(false);
   const { setAccount, setLoggedIn } = useAccount();
   const { setModal } = useModal();
   const history = useHistory();
@@ -32,6 +33,7 @@ const Login = () => {
   }, [formState, errors])
 
   const submitHandler = (formData) => {
+    setInputBlocked(true);
     const { account_email:mail, account_password:password } = formData;
     mainApi
       .signin(mail, password)
@@ -50,6 +52,7 @@ const Login = () => {
         else {
           throw new Error('Ошибка при авторизации')
         }
+        setInputBlocked(false);
       })
       .catch(err => {
         console.error(err);
@@ -59,6 +62,7 @@ const Login = () => {
                     Подождите немного и попробуйте ещё раз`,
           isBad: true,
         })
+        setInputBlocked(false);
       })
   }
 
@@ -67,7 +71,7 @@ const Login = () => {
       <Logo/>
       <p className="login__greetings">Рады видеть!</p>
       <Input
-        formProps={{ register, errors, setValue }}
+        formProps={{ register, errors, setValue, blocked : inputBlocked  }}
         id={"email"}
         label={"E-mail"}
         placeholder={"Укажите email"}
@@ -77,7 +81,7 @@ const Login = () => {
           pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       }} />
       <Input
-        formProps={{ register, errors, setValue }}
+        formProps={{ register, errors, setValue, blocked : inputBlocked }}
         id={"password"}
         type={"password"}
         label={"Пароль"}

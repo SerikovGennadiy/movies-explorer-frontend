@@ -6,12 +6,15 @@ import { useModal } from '../../contexts/ModalContext';
 
 import movieApi from '../../utils/MoviesApi';
 
-import { filterMovies } from '../../utils/utils';
+import { filterMovies, filterShortMovies, getLastMovies, getLastSavedMovies, saveLastMovies, saveLastSavedMovies } from '../../utils/utils';
+
 import FieldCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-const SearchForm = () => {
+const SearchForm = (props) => {
   const input = useRef();
-  const { setMovies, setPreloader } = useMovies();
+  const { isSavedList } = props;
+
+  const { setMovies, setPreloader, savedMovies, setSavedMovies } = useMovies();
   const { setModal } = useModal();
 
   const {
@@ -26,21 +29,54 @@ const SearchForm = () => {
   const submitHandler = (filter) => {
     setPreloader(true);
     setTimeout(() => {
-      movieApi.getMovies()
-        .then(movies => {
-          const filteredMovies = filterMovies(movies, filter.searched_movie, filter.short_film_only);
-          setMovies(filteredMovies);
-        })
-        .then(() => setPreloader(false))
-        .catch((err) => {
-          console.log(err);
-          setModal({
-            message: 'Ошибка',
-            isBad: true
-          });
-          setPreloader(false)}
-      );
+      if(isSavedList) {
+        let _movies = filterMovies(savedMovies, filter.searched_movie);
+        //saveLastSavedMovies(_movies);
+        if(filter.short_film_only) {
+          _movies = filterShortMovies(_movies);
+        }
+        setSavedMovies(_movies);
+        setPreloader(false)
+      }
+      else {
+        movieApi.getMovies()
+          .then(movies => {
+            let _movies = filterMovies(movies, filter.searched_movie);
+            saveLastMovies(_movies)
+            if(filter.short_film_only) {
+              _movies = filterShortMovies(_movies);
+            }
+            setMovies(_movies);
+          })
+          .then(() => setPreloader(false))
+          .catch((err) => {
+            setModal({
+              message: 'Ошибка',
+              isBad: true
+            });
+            setPreloader(false);
+          }
+        );
+      }
     }, 1000);
+  }
+
+  const onShortMovieChecked = (checkbox) => {
+    const isChecked = checkbox.target.checked;
+
+    if(isSavedList) {
+      let movies = getLastSavedMovies();
+      if(isChecked) {
+        movies = filterShortMovies(movies);
+      }
+      setSavedMovies(movies);
+    } else {
+      let movies = getLastMovies();
+      if(isChecked) {
+        movies = filterShortMovies(movies);
+      }
+      setMovies(movies);
+    }
   }
 
   return (
@@ -62,7 +98,7 @@ const SearchForm = () => {
         </span>
         <button className="search-form__submit" type="submit">Найти</button>
       </div>
-      <FieldCheckbox formProps={{register, setValue}}  mix={"search-form__checkbox"}/>
+      <FieldCheckbox formProps={{register, setValue}} onChange={onShortMovieChecked} mix={"search-form__checkbox"}/>
     </form>
   )
 }

@@ -5,7 +5,7 @@ const Input = (props) => {
 
   const input = useRef();
   const { id, label, type = 'text', placeholder, name, value = '', pattern, formProps } = props;
-  const { register, errors, setValue} = formProps;
+  const { register, errors, setValue, blocked = false} = formProps;
 
   return (
     <div className="field">
@@ -20,6 +20,7 @@ const Input = (props) => {
         defaultValue={value}
         autoComplete="off"
         onChange={()=>{ setValue(name, input.current.value)}}
+        disabled={blocked}
       />
       <span className={ `field__error ${ errors?.[name] && 'field__error_active' }`}>
         { errors?.[name]?.type === 'required' && 'Поле обязательно для заполнения' }

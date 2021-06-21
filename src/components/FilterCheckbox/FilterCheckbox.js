@@ -4,13 +4,15 @@ import { useEffect, useRef, useState } from 'react';
 const FilterCheckbox = (props) => {
   const { mix = '', formProps } = props;
   const { register, setValue } = formProps;
+  const { onChange } = props;
 
   const check = useRef();
   const [checked, setChecked] = useState(false);
 
-  const onChange = (e) => {
+  const onСheckChange = (e) => {
     setChecked(check.current.checked);
     setValue("short_film_only", checked)
+    onChange(e);
   }
 
   useEffect(() => {
@@ -26,7 +28,7 @@ const FilterCheckbox = (props) => {
         ref={check}
         type="checkbox"
         id="short-movie-check"
-        onChange={onChange}
+        onChange={onСheckChange}
       />
       <label className="field-checkbox__label" htmlFor="short-movie-check">
         <div className="field-checkbox__block">
