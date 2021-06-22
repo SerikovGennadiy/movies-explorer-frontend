@@ -87,30 +87,10 @@ const SearchForm = (props) => {
     const filter = checkbox.target.closest('form');
     const isChecked = checkbox.target.checked;
     if(isSavedList) {
-<<<<<<< HEAD
       let movies = getSavedMovies();
       movies = filterMovies(movies, filter.searched_movie.value);
       if(isChecked) {
         movies = filterShortMovies(movies, true);
-=======
-      // let movies = getSavedMovies();
-      // if(isChecked) {
-      //   movies = movies.map((movie) => {
-      //     movie.duration = movie.duration / 1000 / 60;
-      //     return movie;
-      //   })
-      //   movies = filterShortMovies(movies);
-      // }
-      // setSavedMovies(movies);
-      let movies = getSavedMovies();
-      movies = filterMovies(movies, filter.searched_movie.value);
-      if(isChecked) {
-        movies = movies.map((movie) => {
-          movie.duration = movie.duration / 1000 / 60;
-          return movie;
-        })
-        movies = filterShortMovies(movies);
->>>>>>> f92689ed39c2e1b7f37284fbff36146d5458728a
       }
       setSavedMovies(movies);
       setPreloader(false)
