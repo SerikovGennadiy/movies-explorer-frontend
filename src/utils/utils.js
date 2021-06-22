@@ -60,6 +60,10 @@ export const formatTimeMilli = (_milliseconds) => {
 }
 
 export const filterMovies = (movies, title) => {
+  console.log(title);
+  if(title === '') {
+    return movies;
+  }
   return movies.filter(movie => {
     const _title = title.toLowerCase();
     const nameEn = movie["nameEN"] !== null ? movie["nameEN"].toLowerCase().includes(_title) : false;
@@ -68,8 +72,24 @@ export const filterMovies = (movies, title) => {
   });
 }
 
-export const filterShortMovies = (movies) => {
-  return movies.filter(movie => movie.duration < SHORT_FILM_DURATION);
+export const filterShortMovies = (movies, isMilliseconds = false) => {
+  console.log(movies, movies.filter(movie => movie.duration < SHORT_FILM_DURATION), SHORT_FILM_DURATION)
+  return movies.filter(movie => {
+    return isMilliseconds ?
+              movie.duration < SHORT_FILM_DURATION / 1000 / 60 :
+              movie.duration < SHORT_FILM_DURATION;
+   });
+}
+
+export const getServerMovies = () => {
+  let _movies = [];
+  if(localStorage.getItem('serverMovies')) {
+    const { movies } = JSON.parse(localStorage.getItem('serverMovies'));
+    if(movies.__proto__ === Array.prototype) {
+      _movies = movies;
+    }
+  }
+  return _movies;
 }
 
 export const getLastMovies = () => {
@@ -82,7 +102,8 @@ export const getLastMovies = () => {
   }
   return _movies;
 }
-export const getLastSavedMovies = () => {
+
+export const getSavedMovies = () => {
   let _movies = [];
   if(localStorage.getItem('lastQuerySavedMovies')) {
     const { movies } = JSON.parse(localStorage.getItem('lastQuerySavedMovies'));
@@ -97,10 +118,16 @@ export const saveLastMovies = (movies) => {
   if(movies.__proto__ === Array.prototype) {
     localStorage.setItem('lastQueryMovies', JSON.stringify({ movies }))
   }
-}; //lastQuerySavedMovies
+}; // lastQuerySavedMovies
 
-export const saveLastSavedMovies = (movies) => {
+export const saveSavedMovies = (movies) => {
   if(movies.__proto__ === Array.prototype) {
     localStorage.setItem('lastQuerySavedMovies', JSON.stringify({ movies }))
   }
-} //lastQuerySavedMovies
+} // lastQuerySavedMovies
+
+export const saveServerMovies = (movies) => {
+  if(movies.__proto__ === Array.prototype) {
+    localStorage.setItem('serverMovies', JSON.stringify({ movies }))
+  }
+} // serverMovies

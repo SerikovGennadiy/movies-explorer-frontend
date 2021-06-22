@@ -1,12 +1,10 @@
 import './SearchForm.css';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMovies } from '../../contexts/MovieContext';
+import { MovieProvider, useMovies } from '../../contexts/MovieContext';
 import { useModal } from '../../contexts/ModalContext';
 
-import movieApi from '../../utils/MoviesApi';
-
-import { filterMovies, filterShortMovies, getLastMovies, getLastSavedMovies, saveLastMovies } from '../../utils/utils';
+import { filterMovies, filterShortMovies, getLastMovies, getSavedMovies, saveLastMovies } from '../../utils/utils';
 
 import FieldCheckbox from '../FilterCheckbox/FilterCheckbox';
 
@@ -14,7 +12,7 @@ const SearchForm = (props) => {
   const input = useRef();
   const { isSavedList } = props;
 
-  const { setMovies, setPreloader, savedMovies, setSavedMovies } = useMovies();
+  const { setMovies, setPreloader, savedMovies, setSavedMovies, serverMovies } = useMovies();
   const { setModal } = useModal();
 
   const {
@@ -30,16 +28,29 @@ const SearchForm = (props) => {
     setPreloader(true);
     setTimeout(() => {
       if(isSavedList) {
-        let _movies = filterMovies(savedMovies, filter.searched_movie);
-        //saveLastSavedMovies(_movies);
+        // let _movies = filterMovies(savedMovies, filter.searched_movie);
+        // //saveSavedMovies(_movies);
+        // if(filter.short_film_only) {
+        //   _movies = filterShortMovies(_movies);
+        // }
+        // setSavedMovies(_movies);
+        // setPreloader(false)
+        //============================
+        let movies = getSavedMovies();
+        movies = filterMovies(movies, filter.searched_movie);
         if(filter.short_film_only) {
-          _movies = filterShortMovies(_movies);
+          movies = movies.map((movie) => {
+            movie.duration = movie.duration / 1000 / 60;
+            return movie;
+          })
+          movies = filterShortMovies(movies);
         }
-        setSavedMovies(_movies);
+        setSavedMovies(movies);
         setPreloader(false)
       }
       else {
-        movieApi.getMovies()
+        //movieApi.getMovies()
+        Promise.resolve(serverMovies)
           .then(movies => {
             let _movies = filterMovies(movies, filter.searched_movie);
             saveLastMovies(_movies)
@@ -62,14 +73,25 @@ const SearchForm = (props) => {
   }
 
   const onShortMovieChecked = (checkbox) => {
+    const filter = checkbox.target.closest('form');
     const isChecked = checkbox.target.checked;
-
     if(isSavedList) {
-      let movies = getLastSavedMovies();
+      // let movies = getSavedMovies();
+      // if(isChecked) {
+      //   movies = movies.map((movie) => {
+      //     movie.duration = movie.duration / 1000 / 60;
+      //     return movie;
+      //   })
+      //   movies = filterShortMovies(movies);
+      // }
+      // setSavedMovies(movies);
+      let movies = getSavedMovies();
+      movies = filterMovies(movies, filter.searched_movie.value);
       if(isChecked) {
-        movies = filterShortMovies(movies);
+        movies = filterShortMovies(movies, isMilliseconds);
       }
       setSavedMovies(movies);
+      setPreloader(false)
     } else {
       let movies = getLastMovies();
       if(isChecked) {
