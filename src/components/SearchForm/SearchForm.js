@@ -12,7 +12,11 @@ const SearchForm = (props) => {
   const input = useRef();
   const { isSavedList } = props;
 
+<<<<<<< HEAD
   const { setMovies, setPreloader, setSavedMovies, serverMovies } = useMovies();
+=======
+  const { setMovies, setPreloader, savedMovies, setSavedMovies, serverMovies } = useMovies();
+>>>>>>> f92689ed39c2e1b7f37284fbff36146d5458728a
   const { setModal } = useModal();
 
   const {
@@ -28,10 +32,29 @@ const SearchForm = (props) => {
     setPreloader(true);
     setTimeout(() => {
       if(isSavedList) {
+<<<<<<< HEAD
         let movies = getSavedMovies();
         movies = filterMovies(movies, filter.searched_movie);
         if(filter.short_film_only) {
           movies = filterShortMovies(movies, true);
+=======
+        // let _movies = filterMovies(savedMovies, filter.searched_movie);
+        // //saveSavedMovies(_movies);
+        // if(filter.short_film_only) {
+        //   _movies = filterShortMovies(_movies);
+        // }
+        // setSavedMovies(_movies);
+        // setPreloader(false)
+        //============================
+        let movies = getSavedMovies();
+        movies = filterMovies(movies, filter.searched_movie);
+        if(filter.short_film_only) {
+          movies = movies.map((movie) => {
+            movie.duration = movie.duration / 1000 / 60;
+            return movie;
+          })
+          movies = filterShortMovies(movies);
+>>>>>>> f92689ed39c2e1b7f37284fbff36146d5458728a
         }
         setSavedMovies(movies);
         setPreloader(false)
@@ -64,10 +87,30 @@ const SearchForm = (props) => {
     const filter = checkbox.target.closest('form');
     const isChecked = checkbox.target.checked;
     if(isSavedList) {
+<<<<<<< HEAD
       let movies = getSavedMovies();
       movies = filterMovies(movies, filter.searched_movie.value);
       if(isChecked) {
         movies = filterShortMovies(movies, true);
+=======
+      // let movies = getSavedMovies();
+      // if(isChecked) {
+      //   movies = movies.map((movie) => {
+      //     movie.duration = movie.duration / 1000 / 60;
+      //     return movie;
+      //   })
+      //   movies = filterShortMovies(movies);
+      // }
+      // setSavedMovies(movies);
+      let movies = getSavedMovies();
+      movies = filterMovies(movies, filter.searched_movie.value);
+      if(isChecked) {
+        movies = movies.map((movie) => {
+          movie.duration = movie.duration / 1000 / 60;
+          return movie;
+        })
+        movies = filterShortMovies(movies);
+>>>>>>> f92689ed39c2e1b7f37284fbff36146d5458728a
       }
       setSavedMovies(movies);
       setPreloader(false)

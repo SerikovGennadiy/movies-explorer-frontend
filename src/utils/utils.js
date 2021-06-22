@@ -72,6 +72,7 @@ export const filterMovies = (movies, title) => {
   });
 }
 
+<<<<<<< HEAD
 export const filterShortMovies = (movies, isMilliseconds = false) => {
   console.log(movies, movies.filter(movie => movie.duration < SHORT_FILM_DURATION), SHORT_FILM_DURATION)
   return movies.filter(movie => {
@@ -79,6 +80,22 @@ export const filterShortMovies = (movies, isMilliseconds = false) => {
               movie.duration < (SHORT_FILM_DURATION * 1000 * 60) :
               movie.duration < SHORT_FILM_DURATION;
    });
+}
+
+export const getServerMovies = () => {
+  let _movies = [];
+  if(localStorage.getItem('serverMovies')) {
+    const { movies } = JSON.parse(localStorage.getItem('serverMovies'));
+    if(movies.__proto__ === Array.prototype) {
+      _movies = movies;
+    }
+  }
+  return _movies;
+=======
+export const filterShortMovies = (movies) => {
+  console.log(movies, movies.filter(movie => movie.duration < SHORT_FILM_DURATION), SHORT_FILM_DURATION)
+  return movies.filter(movie => movie.duration < SHORT_FILM_DURATION);
+>>>>>>> f92689ed39c2e1b7f37284fbff36146d5458728a
 }
 
 export const getServerMovies = () => {
