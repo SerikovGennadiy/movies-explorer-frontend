@@ -22,8 +22,10 @@ export const MovieProvider = ({children}) => {
         else {
           return mainApi.getSavedMovies()
             .then(({ data: movies }) => {
-              localStorage.setItem('lastQuerySavedMovies', JSON.stringify({ movies }));
-              setSavedMovies(movies);
+              if(movies.length > 0) {
+                localStorage.setItem('lastQuerySavedMovies', JSON.stringify({ movies }));
+                setSavedMovies(movies);
+              }
             })
             .catch(err => console.error);
         }

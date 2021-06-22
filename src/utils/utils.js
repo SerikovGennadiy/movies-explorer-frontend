@@ -76,7 +76,9 @@ export const getLastMovies = () => {
   let _movies = [];
   if(localStorage.getItem('lastQueryMovies')) {
     const { movies } = JSON.parse(localStorage.getItem('lastQueryMovies'));
-    _movies = movies;
+    if(movies.__proto__ === Array.prototype) {
+      _movies = movies;
+    }
   }
   return _movies;
 }
@@ -84,10 +86,21 @@ export const getLastSavedMovies = () => {
   let _movies = [];
   if(localStorage.getItem('lastQuerySavedMovies')) {
     const { movies } = JSON.parse(localStorage.getItem('lastQuerySavedMovies'));
-    _movies = movies;
+    if(movies.__proto__ === Array.prototype) {
+      _movies = movies;
+    }
   }
   return _movies;
 }
 
-export const saveLastMovies = (movies) => localStorage.setItem('lastQueryMovies', JSON.stringify({ movies })); //lastQuerySavedMovies
-export const saveLastSavedMovies = (movies) => localStorage.setItem('lastQuerySavedMovies', JSON.stringify({ movies })); //lastQuerySavedMovies
+export const saveLastMovies = (movies) => {
+  if(movies.__proto__ === Array.prototype) {
+    localStorage.setItem('lastQueryMovies', JSON.stringify({ movies }))
+  }
+}; //lastQuerySavedMovies
+
+export const saveLastSavedMovies = (movies) => {
+  if(movies.__proto__ === Array.prototype) {
+    localStorage.setItem('lastQuerySavedMovies', JSON.stringify({ movies }))
+  }
+} //lastQuerySavedMovies
