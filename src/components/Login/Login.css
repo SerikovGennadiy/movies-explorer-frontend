@@ -46,6 +46,11 @@
   opacity: .7;
 }
 
+.login__button_unactive {
+  background-color: #a1a1a18c;
+  pointer-events: none;
+}
+
 .login__landing {
   display: flex;
   align-items: center;

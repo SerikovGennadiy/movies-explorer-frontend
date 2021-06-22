@@ -5,11 +5,12 @@ const ModalContext = createContext();
 export const ModalProvider = ({children}) => {
   const [modalWindow, setModalWindow] = useState({
     message: 'Тестовый режим',
-    isOpen: true,
+    isOpen: false, //true,
     isBad: true
   });
 
   const setModal = ({message = '', isBad = false }) => {
+    resetModal();
     setModalWindow({
       ...modalWindow,
         message,

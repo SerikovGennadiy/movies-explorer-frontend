@@ -46,6 +46,12 @@
   opacity: .7;
 }
 
+.register__button_unactive {
+  background-color: #a1a1a18c;
+  pointer-events: none;
+}
+
+
 .register__landing {
   display: flex;
   align-items: center;

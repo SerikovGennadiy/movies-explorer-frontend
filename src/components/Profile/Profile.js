@@ -1,17 +1,40 @@
 import './Profile.css';
 import Header from '../Header/Header';
+
 import { useAccount } from '../../contexts/AccountContext';
+import { useModal } from '../../contexts/ModalContext';
+
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+
+import mainApi from '../../utils/MainApi';
 
 const Profile = () => {
   const history = useHistory();
   const { account, setLoggedIn } = useAccount();
+  const { setModal } = useModal();
 
   const logout = () => {
-    setLoggedIn(false)
-    history.push('./')
+    mainApi.signout()
+      .then(({ isLogOut, message }) => {
+        if(isLogOut) {
+          setLoggedIn(false);
+          localStorage.clear();
+          history.push('/signin')
+        }
+        else {
+         throw new Error('Ошибка при выходе')
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        setModal({
+          message: 'Ошибка при выходе',
+          isBad: true,
+        })
+      })
   }
+
     return (
       <>
         <Header/>

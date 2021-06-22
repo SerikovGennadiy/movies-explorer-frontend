@@ -12,6 +12,13 @@
   height: 151px;
 
   margin-bottom: 6px;
+  cursor: pointer;
+
+  transition: all .3s;
+}
+
+.movie-card__image:hover {
+  transform: scale(1.05);
 }
 
 .movie-card__title-block {

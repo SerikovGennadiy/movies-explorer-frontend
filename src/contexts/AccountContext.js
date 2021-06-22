@@ -1,17 +1,34 @@
-import { Account } from '../data/data';
-import { createContext, useState, useContext } from 'react';
+import mainApi from '../utils/MainApi';
 
-const AccountContext = createContext();
+import { createContext, useState, useContext, useEffect } from 'react';
+//import { useHistory } from 'react-router-dom';
 
-export const AccountProvider = ({children}) => {
+const CurrentUserContext = createContext();
+
+export const CurrentUserProvider = ({children}) => {
+  //const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(true);
-  const [account, setAccount] = useState(Account);
+  const [account, setAccount] = useState({});
+
+  useEffect(() => {
+   const result = mainApi.checkToken();
+         result.then(({ data }) => {
+            console.log(data);
+            if(data && data._id) {
+              setAccount(data);
+            }
+            else {
+              setLoggedIn(false);
+            }
+          })
+          .catch(err => console.error)
+  }, [])
 
   return (
-    <AccountContext.Provider value={{loggedIn, setLoggedIn, account, setAccount}}>
+    <CurrentUserContext.Provider value={{loggedIn, setLoggedIn, account, setAccount}}>
       {children}
-    </AccountContext.Provider>
+    </CurrentUserContext.Provider>
   )
 }
 
-export const useAccount = () => useContext(AccountContext);
+export const useAccount = () => useContext(CurrentUserContext);
