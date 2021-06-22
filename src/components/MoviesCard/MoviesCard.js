@@ -5,7 +5,7 @@ import MovieCardCheckbox from '../MovieCardCheckbox/MovieCardCheckbox';
 import { useEffect, useState } from 'react';
 import { useMovies } from '../../contexts/MovieContext';
 import { useModal } from '../../contexts/ModalContext';
-import { formatTime, formatTimeMilli, saveLastSavedMovies } from '../../utils/utils';
+import { formatTime, formatTimeMilli, saveSavedMovies } from '../../utils/utils';
 import { useHistory } from 'react-router-dom';
 
 import mainApi from '../../utils/MainApi';
@@ -43,7 +43,7 @@ const MoviesCard = ({ movieCard, isSavedList }) => {
         }
         else {
           const arr = savedMovies.filter(movie => movie.movieId !== movieId);
-          saveLastSavedMovies([...arr]);
+          saveSavedMovies([...arr]);
           setSavedMovies([...arr]);
           setChecked(false);
           setModal({
@@ -115,7 +115,7 @@ const MoviesCard = ({ movieCard, isSavedList }) => {
           }];
 
           setSavedMovies(_savedMovies)
-          saveLastSavedMovies(_savedMovies);
+          saveSavedMovies(_savedMovies);
           setChecked(true);
         }
         setPreloader(false);
