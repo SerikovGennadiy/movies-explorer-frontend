@@ -12,7 +12,7 @@ const MoviesCardList = (props) => {
   const { isSavedList = false } = props;
 
   const { preloader, setPreloader, movies, savedMovies } = useMovies();
-  const movieList = isSavedList ? savedMovies : movies;
+  let movieList = isSavedList ? savedMovies : movies;
 
   const [ buffer, setBuffer ] = useState([]);
   const [ note, setNote ] = useState('');
@@ -20,6 +20,7 @@ const MoviesCardList = (props) => {
   const ranger = useSkipTake();
 
   useEffect(() => {
+
     setNote('');
   }, []);
 

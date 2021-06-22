@@ -76,7 +76,7 @@ export const filterShortMovies = (movies, isMilliseconds = false) => {
   console.log(movies, movies.filter(movie => movie.duration < SHORT_FILM_DURATION), SHORT_FILM_DURATION)
   return movies.filter(movie => {
     return isMilliseconds ?
-              movie.duration < SHORT_FILM_DURATION / 1000 / 60 :
+              movie.duration < (SHORT_FILM_DURATION * 1000 * 60) :
               movie.duration < SHORT_FILM_DURATION;
    });
 }
